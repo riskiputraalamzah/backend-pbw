@@ -1,3 +1,23 @@
+<?php
+
+function active($url)
+{
+    $uri = explode('/', $_SERVER['REQUEST_URI']);
+    $result = false;
+    if (count($uri) > 2) {
+        if ($uri[1] == $url) {
+            $result = true;
+        }
+    } else {
+        if ($uri[1] == '' && $url == 'root') {
+            $result = true;
+        }
+    }
+    return $result;
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,6 +133,25 @@
             margin-left: 10px;
             color: white;
         }
+
+        .over_flow {
+
+            line-height: 30px;
+            overflow: hidden;
+
+
+            /*The problematic part is below*/
+            text-overflow: ellipsis;
+            white-space: normal;
+            text-align: justify;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -138,66 +177,57 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a class="active" href="/">Home</a>
+                        <a class="<?= active('root') ? 'active' : '' ?>" href="/">Home</a>
                     </li>
                     <li>
-                        <a href="/profil.php">Profil</a>
+                        <a class="<?= active('profil') ? 'active' : '' ?>" href="/profil">Profil</a>
                     </li>
                     <li>
-                        <a href="/berita.php">Berita</a>
+                        <a class="<?= active('berita') ? 'active' : '' ?>" href="/berita">Berita</a>
                     </li>
                     <li>
-                        <a href="/galeri.php">Galeri</a>
+                        <a class="<?= active('galeri') ? 'active' : '' ?>" href="/galeri">Galeri</a>
                     </li>
 
                     <li>
-                        <a href="/kontak-kami.php">Kontak</a>
+                        <a class="<?= active('kontak-kami')  ? 'active' : '' ?>" href="/kontak-kami">Kontak</a>
                     </li>
-                    <?php
 
-                    if (isset($_SESSION['status'])) {
-                        echo '
-    
-        <li class="d-lg-none d-flex">
-        <a href="/functions/logout.php" class="btn btn-danger login-mobile text-light">Logout</a>
-    </li>
-        <li class="d-lg-none d-block">
-        <a href="/admin" class="d-flex justify-content-start align-items-center">
-        <img  style="width:50px;" class="img-fluid rounded-circle  me-3" src="/assets/img/user.png"/>
-        <span>' .  $_SESSION['data']['name'] . '</span>
-        </a>
-    </li>
-            ';
-                    } else {
-                        echo '
+                    <?php if (isset($_SESSION['status'])) : ?>
+
+                        <li class="d-lg-none d-flex">
+                            <a href="/functions/logout.php" class="btn btn-danger login-mobile text-light">Logout</a>
+                        </li>
                         <li class="d-lg-none d-block">
-                        <a href="/login.php" class="btn btn-success login-mobile text-light">Login</a>
-                    </li>
-        ';
-                    }
-                    ?>
+                            <a href="/admin" class="d-flex justify-content-start align-items-center">
+                                <img style="width:50px;" class="img-fluid rounded-circle  me-3" src="/assets/img/user.png" />
+                                <span> <?= $_SESSION['data']['name'] ?>'</span>
+                            </a>
+                        </li>
+
+                    <?php else : ?>
+                        <li class="d-lg-none d-block">
+                            <a href="/login.php" class="btn btn-success login-mobile text-light">Login</a>
+                        </li>
+                    <?php endif; ?>
+
 
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
-            <?php
 
-            if (isset($_SESSION['status'])) {
-                echo '
-                    <div class="flex-item-row d-lg-flex d-none"> 
+            <?php if (isset($_SESSION['status'])) : ?>
+                <div class="flex-item-row d-lg-flex d-none">
                     <a href="/functions/logout.php" class="btn btn-danger align-items-center d-lg-flex me-3 d-none">Logout</a>
-                    <a href="/admin" class="bg-light rounded-circle border" >
-                    <img class="img-fluid  d-lg-flex" style="width:50px;" src="/assets/img/user.png"/>
+                    <a href="/admin" class="bg-light rounded-circle border">
+                        <img class="img-fluid  d-lg-flex" style="width:50px;" src="/assets/img/user.png" />
                     </a>
-                    </div>
-                        ';
-            } else {
-                echo '
+                </div>
+            <?php else : ?>
                 <a href="/login.php" class="btn btn-success d-lg-block d-none">Login</a>
-                    ';
-            }
-            ?>
+            <?php endif; ?>
+
             <!-- .navbar -->
         </div>
     </header>

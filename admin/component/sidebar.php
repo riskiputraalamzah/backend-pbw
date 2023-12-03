@@ -1,49 +1,75 @@
-    <!-- ======= Sidebar ======= -->
-    <aside id="sidebar" class="sidebar">
+<?php
 
-        <ul class="sidebar-nav" id="sidebar-nav">
+function active($url)
+{
+    $uri = explode('/', $_SERVER['REQUEST_URI']);
+    $result = false;
+    if (count($uri) > 3) {
+        if ($uri[2] == $url) {
+            $result = true;
+        }
+    } else {
+        if ($uri[1] == $url) {
+            $result = true;
+        }
+    }
+    return $result;
+}
+?>
 
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link <?= active('admin') ? '' : 'collapsed' ?>" href="/admin">
+                <i class="bi bi-grid"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <?php if ($_SESSION['data']['username'] == 'danda') : ?>
             <li class="nav-item">
-                <a class="nav-link " href="/admin/">
-
-                    <span>Home</span>
+                <a class="nav-link 
+                    <?= active('profile') ? '' : 'collapsed' ?>" href="/admin/profile">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
                 </a>
             </li>
-            <?php if ($_SESSION['data']['username'] == 'danda') : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="/admin/profile.php">
 
-                        <span>Profile</span>
-                    </a>
-                </li>
+        <?php endif; ?>
+        <?php if ($_SESSION['data']['username'] == 'putra') : ?>
+            <li class="nav-item">
+                <a class="nav-link <?= active('berita') ? '' : 'collapsed' ?>" href="/admin/berita">
+                    <i class="bi bi-card-list"></i>
+                    <span>Berita</span>
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if ($_SESSION['data']['username'] == 'danil') : ?>
+            <li class="nav-item">
 
-            <?php endif; ?>
-            <?php if ($_SESSION['data']['username'] == 'putra') : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="/admin/berita.php">
+                <a class="nav-link 
+                    <?=
+                    $_SERVER['REQUEST_URI'] == '/admin/galeri/' ||
+                        $_SERVER['REQUEST_URI'] == '/admin/galeri/*' ? '' : 'collapsed' ?>" href="/admin/galeri/*">
+                    <i class="bi bi-layout-text-window-reverse"></i>
+                    <span>Galeri</span>
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if ($_SESSION['data']['username'] == 'farhan') : ?>
+            <li class="nav-item">
+                <a class="nav-link 
+                    <?=
+                    $_SERVER['REQUEST_URI'] == '/admin/kontak/' ||
+                        $_SERVER['REQUEST_URI'] == '/admin/kontak/*' ? '' : 'collapsed' ?>" href="/admin/kontak">
+                    <i class="bi bi-envelope"></i>
+                    <span>Kontak</span>
+                </a>
+            </li>
+        <?php endif; ?>
 
-                        <span>Berita</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-            <?php if ($_SESSION['data']['username'] == 'danil') : ?>
-                <li class="nav-item">
+    </ul>
 
-                    <a class="nav-link collapsed" href="/admin/galeri.php">
-
-                        <span>Galeri</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-            <?php if ($_SESSION['data']['username'] == 'farhan') : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="/admin/kontak.php">
-
-                        <span>Kontak</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-
-        </ul>
-
-    </aside><!-- End Sidebar-->
+</aside><!-- End Sidebar-->
