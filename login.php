@@ -57,11 +57,11 @@ include('./component/header.php') ?>
                     <form action="./functions/cek_login.php" method="post">
                         <div class="mb-4">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" name="username" class="form-control" id="username" placeholder="username" autocomplete="off">
+                            <input type="text" name="username" class="form-control" id="username" placeholder="username" autocomplete="off" required>
                         </div>
                         <div class="mb-4">
                             <label for="password" class="form-label">Password</label>
-                            <input type="text" name="password" class="form-control" id="password" placeholder="password" autocomplete="off">
+                            <input type="text" name="password" class="form-control" id="password" placeholder="password" autocomplete="off" required>
                         </div>
                         <div class="mb-4">
                             <div class="d-flex justify-content-end">

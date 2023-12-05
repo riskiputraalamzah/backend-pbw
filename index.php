@@ -61,7 +61,7 @@
               </p>
 
               <!-- <a href="our-story.html" class="btn-learn-more">Learn More</a> -->
-              <a data-aos="fade-up" href="/profil.html" class="btn-learn-more">Lihat Selengkapnya</a>
+              <a data-aos="fade-up" href="/profil" class="btn-learn-more">Lihat Selengkapnya</a>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
                   Pengangkatan Pimpinan dan Anggota Lembaga Resiliensi Bencana
                   Pimpinan Pusat Muhammadiyah Periode 2022-2027.
                 </p>
-                <a href="/profil.html" class="btn btn-outline-primary">Baca Selengkapnya</a>
+                <a href="/profil" class="btn btn-outline-primary">Baca Selengkapnya</a>
               </div>
             </div>
           </div>

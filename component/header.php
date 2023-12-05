@@ -200,7 +200,7 @@ function active($url)
                         </li>
                         <li class="d-lg-none d-block">
                             <a href="/admin" class="d-flex justify-content-start align-items-center">
-                                <img style="width:50px;" class="img-fluid rounded-circle  me-3" src="/assets/img/user.png" />
+                                <img style="width:35px;height:35px;" class="img-fluid rounded-circle  me-3" src="/assets/img/user.png" />
                                 <span> <?= $_SESSION['data']['name'] ?>'</span>
                             </a>
                         </li>
@@ -218,10 +218,10 @@ function active($url)
             </nav>
 
             <?php if (isset($_SESSION['status'])) : ?>
-                <div class="flex-item-row d-lg-flex d-none">
+                <div class="flex-item-row d-lg-flex d-none align-items-center">
                     <a href="/functions/logout.php" class="btn btn-danger align-items-center d-lg-flex me-3 d-none">Logout</a>
                     <a href="/admin" class="bg-light rounded-circle border">
-                        <img class="img-fluid  d-lg-flex" style="width:50px;" src="/assets/img/user.png" />
+                        <img class="img-fluid  d-lg-flex" style="width:35px;height:35px;" src="/assets/img/user.png" />
                     </a>
                 </div>
             <?php else : ?>

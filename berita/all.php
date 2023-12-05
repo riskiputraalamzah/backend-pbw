@@ -36,7 +36,8 @@
                     <?php endwhile; ?>
                 <?php else : ?>
                     <div class="text-center">
-                        Data masih kosong
+                        <div class="fs-2 fw-bold mb-3">Mohon Maaf</div>
+                        <div class="fs-5">Data masih kosong</div>
                     </div>
                 <?php endif; ?>
             </div>
